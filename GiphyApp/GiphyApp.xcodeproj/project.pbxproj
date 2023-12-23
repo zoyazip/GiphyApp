@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		F3C4FD952B370E7300D1FA4E /* GiphyAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FD942B370E7300D1FA4E /* GiphyAppApp.swift */; };
-		F3C4FD972B370E7300D1FA4E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FD962B370E7300D1FA4E /* ContentView.swift */; };
+		F3C4FD972B370E7300D1FA4E /* MainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FD962B370E7300D1FA4E /* MainScreenView.swift */; };
 		F3C4FD992B370E7600D1FA4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3C4FD982B370E7600D1FA4E /* Assets.xcassets */; };
 		F3C4FD9C2B370E7600D1FA4E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3C4FD9B2B370E7600D1FA4E /* Preview Assets.xcassets */; };
 		F3C4FDA62B370E7700D1FA4E /* GiphyAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FDA52B370E7700D1FA4E /* GiphyAppTests.swift */; };
 		F3C4FDB02B370E7700D1FA4E /* GiphyAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FDAF2B370E7700D1FA4E /* GiphyAppUITests.swift */; };
 		F3C4FDB22B370E7700D1FA4E /* GiphyAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FDB12B370E7700D1FA4E /* GiphyAppUITestsLaunchTests.swift */; };
+		F3C4FDC42B371A3200D1FA4E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FDC32B371A3200D1FA4E /* Color.swift */; };
+		F3C4FDC62B37279900D1FA4E /* GifDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FDC52B37279900D1FA4E /* GifDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +38,7 @@
 /* Begin PBXFileReference section */
 		F3C4FD912B370E7300D1FA4E /* GiphyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GiphyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3C4FD942B370E7300D1FA4E /* GiphyAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphyAppApp.swift; sourceTree = "<group>"; };
-		F3C4FD962B370E7300D1FA4E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F3C4FD962B370E7300D1FA4E /* MainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenView.swift; sourceTree = "<group>"; };
 		F3C4FD982B370E7600D1FA4E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F3C4FD9B2B370E7600D1FA4E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F3C4FDA12B370E7700D1FA4E /* GiphyAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiphyAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +46,8 @@
 		F3C4FDAB2B370E7700D1FA4E /* GiphyAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiphyAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3C4FDAF2B370E7700D1FA4E /* GiphyAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphyAppUITests.swift; sourceTree = "<group>"; };
 		F3C4FDB12B370E7700D1FA4E /* GiphyAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphyAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F3C4FDC32B371A3200D1FA4E /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		F3C4FDC52B37279900D1FA4E /* GifDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,9 +99,11 @@
 			isa = PBXGroup;
 			children = (
 				F3C4FD942B370E7300D1FA4E /* GiphyAppApp.swift */,
-				F3C4FD962B370E7300D1FA4E /* ContentView.swift */,
+				F3C4FD962B370E7300D1FA4E /* MainScreenView.swift */,
 				F3C4FD982B370E7600D1FA4E /* Assets.xcassets */,
 				F3C4FD9A2B370E7600D1FA4E /* Preview Content */,
+				F3C4FDC32B371A3200D1FA4E /* Color.swift */,
+				F3C4FDC52B37279900D1FA4E /* GifDetailView.swift */,
 			);
 			path = GiphyApp;
 			sourceTree = "<group>";
@@ -257,7 +263,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3C4FD972B370E7300D1FA4E /* ContentView.swift in Sources */,
+				F3C4FD972B370E7300D1FA4E /* MainScreenView.swift in Sources */,
+				F3C4FDC42B371A3200D1FA4E /* Color.swift in Sources */,
+				F3C4FDC62B37279900D1FA4E /* GifDetailView.swift in Sources */,
 				F3C4FD952B370E7300D1FA4E /* GiphyAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,6 +438,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -459,6 +468,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
