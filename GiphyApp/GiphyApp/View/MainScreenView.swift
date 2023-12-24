@@ -6,31 +6,37 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ContentView: View {
+    @ObservedObject private var giphyViewModel = GiphyViewModel()
     @State private var searchText = ""
     @State private var searchIsActive = false
     
-    
     private let width = (UIScreen.main.bounds.width/2) - 32
-    private let data = Array(1...20)
     private let adaptiveColumn = [
         GridItem(.adaptive(minimum:150))
     ]
-    
     
     var body: some View {
         NavigationView {
             ScrollView {
                 LazyVGrid(columns: adaptiveColumn, spacing: 16) {
-                    ForEach(data, id: \.self) { item in
-                        NavigationLink(destination: GifDetailView()) {
-                            Text(String(item))
-                                .frame(width: width, height: 200, alignment: .center)
+                    ForEach(giphyViewModel.giphyData, id: \.id) { item in
+                        NavigationLink(destination: GifDetailView(
+                            title: item.title, author: item.username,
+                            width: item.images.original.width,
+                            height: item.images.original.height,
+                            date: item.import_datetime,
+                            url: item.images.original.url,
+                            originalUrl: item.url)) {
+                            ZStack {
+                                ProgressView()
+                                AnimatedImage(url: URL(string: item.images.original.url))
+                            }.frame(width: width, height: 200, alignment: .center)
                                 .background(Color(hex: "#E3E8E6"))
                                 .clipShape(RoundedRectangle(cornerRadius: 16))
-                                .font(.title)
-                                .foregroundStyle(.black)
+                                .aspectRatio(contentMode: .fill)
                         }
                     }
                 }
@@ -41,19 +47,13 @@ struct ContentView: View {
             .onSubmit(of: .search) {
                 print(searchText)
             }
+            .onAppear {
+                giphyViewModel.fetchData()
+            }
             .onChange(of: searchText) { newValue in
                 
             }
-            .accentColor(.white)
-            .toolbar {
-                ToolbarItem {
-                    Button(action: {
-                        print("info")
-                    }, label: {
-                        Image(systemName: "info.circle")
-                    })
-                }
-            }
+        
     }
 }
 
