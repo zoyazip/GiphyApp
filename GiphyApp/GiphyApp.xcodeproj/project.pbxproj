@@ -16,6 +16,13 @@
 		F3C4FDB22B370E7700D1FA4E /* GiphyAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FDB12B370E7700D1FA4E /* GiphyAppUITestsLaunchTests.swift */; };
 		F3C4FDC42B371A3200D1FA4E /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FDC32B371A3200D1FA4E /* Color.swift */; };
 		F3C4FDC62B37279900D1FA4E /* GifDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FDC52B37279900D1FA4E /* GifDetailView.swift */; };
+		F3C4FDCD2B375CDA00D1FA4E /* GiphyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FDCC2B375CDA00D1FA4E /* GiphyModel.swift */; };
+		F3C4FDD02B375FC000D1FA4E /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FDCF2B375FBF00D1FA4E /* NetworkError.swift */; };
+		F3C4FDD22B37601700D1FA4E /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FDD12B37601700D1FA4E /* NetworkManager.swift */; };
+		F3C4FDD42B37606A00D1FA4E /* URLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FDD32B37606A00D1FA4E /* URLBuilder.swift */; };
+		F3C4FDD62B3766B200D1FA4E /* GiphyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FDD52B3766B200D1FA4E /* GiphyViewModel.swift */; };
+		F3C4FDD82B37689900D1FA4E /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FDD72B37689900D1FA4E /* Configuration.swift */; };
+		F3C4FDE72B38640000D1FA4E /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = F3C4FDE62B38640000D1FA4E /* SDWebImageSwiftUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +55,12 @@
 		F3C4FDB12B370E7700D1FA4E /* GiphyAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphyAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F3C4FDC32B371A3200D1FA4E /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		F3C4FDC52B37279900D1FA4E /* GifDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifDetailView.swift; sourceTree = "<group>"; };
+		F3C4FDCC2B375CDA00D1FA4E /* GiphyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphyModel.swift; sourceTree = "<group>"; };
+		F3C4FDCF2B375FBF00D1FA4E /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		F3C4FDD12B37601700D1FA4E /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		F3C4FDD32B37606A00D1FA4E /* URLBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLBuilder.swift; sourceTree = "<group>"; };
+		F3C4FDD52B3766B200D1FA4E /* GiphyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphyViewModel.swift; sourceTree = "<group>"; };
+		F3C4FDD72B37689900D1FA4E /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3C4FDE72B38640000D1FA4E /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,12 +112,15 @@
 		F3C4FD932B370E7300D1FA4E /* GiphyApp */ = {
 			isa = PBXGroup;
 			children = (
+				F3C4FDCE2B375FAA00D1FA4E /* Enums */,
+				F3C4FDCB2B375CBA00D1FA4E /* ViewModel */,
+				F3C4FDCA2B375CAF00D1FA4E /* Model */,
+				F3C4FDC92B375CA400D1FA4E /* Utils */,
 				F3C4FD942B370E7300D1FA4E /* GiphyAppApp.swift */,
-				F3C4FD962B370E7300D1FA4E /* MainScreenView.swift */,
+				F3C4FDC72B375C8900D1FA4E /* View */,
 				F3C4FD982B370E7600D1FA4E /* Assets.xcassets */,
 				F3C4FD9A2B370E7600D1FA4E /* Preview Content */,
-				F3C4FDC32B371A3200D1FA4E /* Color.swift */,
-				F3C4FDC52B37279900D1FA4E /* GifDetailView.swift */,
+				F3C4FDC82B375C9A00D1FA4E /* Extensions */,
 			);
 			path = GiphyApp;
 			sourceTree = "<group>";
@@ -133,6 +150,57 @@
 			path = GiphyAppUITests;
 			sourceTree = "<group>";
 		};
+		F3C4FDC72B375C8900D1FA4E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F3C4FD962B370E7300D1FA4E /* MainScreenView.swift */,
+				F3C4FDC52B37279900D1FA4E /* GifDetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F3C4FDC82B375C9A00D1FA4E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F3C4FDC32B371A3200D1FA4E /* Color.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		F3C4FDC92B375CA400D1FA4E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F3C4FDD12B37601700D1FA4E /* NetworkManager.swift */,
+				F3C4FDD32B37606A00D1FA4E /* URLBuilder.swift */,
+				F3C4FDD72B37689900D1FA4E /* Configuration.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		F3C4FDCA2B375CAF00D1FA4E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F3C4FDCC2B375CDA00D1FA4E /* GiphyModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F3C4FDCB2B375CBA00D1FA4E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				F3C4FDD52B3766B200D1FA4E /* GiphyViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		F3C4FDCE2B375FAA00D1FA4E /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				F3C4FDCF2B375FBF00D1FA4E /* NetworkError.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -149,6 +217,9 @@
 			dependencies = (
 			);
 			name = GiphyApp;
+			packageProductDependencies = (
+				F3C4FDE62B38640000D1FA4E /* SDWebImageSwiftUI */,
+			);
 			productName = GiphyApp;
 			productReference = F3C4FD912B370E7300D1FA4E /* GiphyApp.app */;
 			productType = "com.apple.product-type.application";
@@ -221,6 +292,9 @@
 				Base,
 			);
 			mainGroup = F3C4FD882B370E7200D1FA4E;
+			packageReferences = (
+				F3C4FDE52B38640000D1FA4E /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+			);
 			productRefGroup = F3C4FD922B370E7300D1FA4E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -266,7 +340,13 @@
 				F3C4FD972B370E7300D1FA4E /* MainScreenView.swift in Sources */,
 				F3C4FDC42B371A3200D1FA4E /* Color.swift in Sources */,
 				F3C4FDC62B37279900D1FA4E /* GifDetailView.swift in Sources */,
+				F3C4FDD22B37601700D1FA4E /* NetworkManager.swift in Sources */,
+				F3C4FDD02B375FC000D1FA4E /* NetworkError.swift in Sources */,
+				F3C4FDD42B37606A00D1FA4E /* URLBuilder.swift in Sources */,
+				F3C4FDD82B37689900D1FA4E /* Configuration.swift in Sources */,
 				F3C4FD952B370E7300D1FA4E /* GiphyAppApp.swift in Sources */,
+				F3C4FDCD2B375CDA00D1FA4E /* GiphyModel.swift in Sources */,
+				F3C4FDD62B3766B200D1FA4E /* GiphyViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,6 +678,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F3C4FDE52B38640000D1FA4E /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.2.6;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F3C4FDE62B38640000D1FA4E /* SDWebImageSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F3C4FDE52B38640000D1FA4E /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
+			productName = SDWebImageSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F3C4FD892B370E7200D1FA4E /* Project object */;
 }
