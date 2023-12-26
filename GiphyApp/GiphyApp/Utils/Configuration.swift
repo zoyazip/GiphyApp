@@ -13,4 +13,5 @@ struct Configuration {
     static let host: String = "api.giphy.com"
     static let trendingPath: String = "/v1/gifs/trending"
     static let searchPath: String = "/v1/gifs/search"
+    static let trendingSearch: String = "/v1/trending/searches"
 }
