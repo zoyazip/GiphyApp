@@ -3,15 +3,16 @@ Test task for ChiliLabs
 
 ## Screenshots:
 
-<div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
 <img src="https://github.com/zoyazip/GiphyApp/assets/67118409/0351ffc1-259c-45ad-93b9-bcf633dd4e77" width="300"/>
+
 ### Main screen
-</div>
 
 <img src="https://github.com/zoyazip/GiphyApp/assets/67118409/1f106298-431c-42f4-8586-93fd3f4512e1" width="300"/>
+
 ### Landscape Mode
 
 <img src="https://github.com/zoyazip/GiphyApp/assets/67118409/bcc07b14-b139-414e-9035-893b2cab4d45" width="300"/>
+
 ### Searching new gifs by user promt and displaying loading indicators, when gifs are loading
 
 <img src="https://github.com/zoyazip/GiphyApp/assets/67118409/dc78ce31-62b9-4024-9f1c-4ac5092498ee" width="300"/>
