@@ -9,56 +9,117 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct ContentView: View {
-    
     @ObservedObject private var giphyViewModel = GiphyViewModel()
-    @State private var searchText = ""
-    @State private var searchIsActive = false
     
-    private let width = (UIScreen.main.bounds.width/2) - 32
-    private let adaptiveColumn = [
-        GridItem(.adaptive(minimum:150))
-    ]
+    @State private var searchText = ""
+    @State private var showAlert = false
+    @State private var errorMessage: String?
+    
+    private let gridItemLayout = [GridItem(.adaptive(minimum: 150))]
+    private let gridSpacing: CGFloat = 16
+    private let horizontalScrollSpacing: CGFloat = 10
+    private let buttonPadding: CGFloat = 10
+    private let cornerRadius: CGFloat = 32
+    private let gifItemHeight: CGFloat = 200
+    private let gifItemBackgroundColor = Color(hex: "#E3E8E6")
     
     var body: some View {
         NavigationView {
             ScrollView {
-                LazyVGrid(columns: adaptiveColumn, spacing: 16) {
-                    ForEach(giphyViewModel.giphyData, id: \.id) { item in
-                        NavigationLink(destination: GifDetailView(giphy: item)) {
-                            ZStack {
-                                ProgressView()
-                                AnimatedImage(url: URL(string: item.images.original.url))
-                            }
-                            .frame(width: width, height: 200, alignment: .center)
-                            .background(Color(hex: "#E3E8E6"))
-                            .clipShape(RoundedRectangle(cornerRadius: 16))
-                            .aspectRatio(contentMode: .fill)
-                            .onAppear {
-                                if item.id == giphyViewModel.giphyData.last?.id {
-                                    giphyViewModel.loadMoreContent()
-                                }
-                            }
-                        }
-                    }
+                trendingSearchView
+                if (giphyViewModel.giphyData.isEmpty && !searchText.isEmpty) {
+                    Spacer()
+                    Text("No Results")
+                        .font(.title3)
+                        .foregroundColor(.gray)
+                    Spacer()
+                } else {
+                    gifGridView
                 }
             }
-            .padding()
+            .padding(.horizontal, 10)
             .navigationTitle("Gifs")
-        }
             .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search Gif")
-                .onSubmit(of: .search) {
-                    giphyViewModel.fetchDataByPrompt(search: searchText, isLoadMore: false)
+            .onSubmit(of: .search) {
+                giphyViewModel.fetchDataByPrompt(search: searchText, isLoadMore: false)
+            }
+            .onAppear {
+                giphyViewModel.fetchDataByTrending(isLoadMore: false)
+                giphyViewModel.fetchTrendingSearch()
+            }
+            .onChange(of: searchText) { newValue in
+                newValue.isEmpty ? giphyViewModel.fetchDataByTrending(isLoadMore: false) : giphyViewModel.updateSearchText(newValue)
+            }
+            .onReceive(giphyViewModel.$networkError) { error in
+                if let error = error {
+                    errorMessage = error.errorMessage
+                    showAlert = true
                 }
-                .onAppear {
-                    giphyViewModel.fetchDataByTrending(isLoadMore: false)
+            }
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("Error"),
+                    message: Text(errorMessage ?? "An error occurred"),
+                    dismissButton: .default(Text("OK"))
+                )
+            }
+        }
+    }
+    
+    private var trendingSearchView: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            LazyHGrid(rows: [GridItem(.flexible())], spacing: horizontalScrollSpacing) {
+                ForEach(giphyViewModel.trendingSearch, id: \.self) { item in
+                    Button(action: {
+                        searchText = item
+                    }, label: {
+                        Text(item)
+                            .padding(.vertical, buttonPadding)
+                            .padding(.horizontal, buttonPadding * 2)
+                            .background(Color.blue)
+                            .foregroundStyle(.white)
+                            .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+                    })
                 }
-                .onChange(of: searchText) { newValue in
-                    giphyViewModel.updateSearchText(newValue)
+            }
+            .padding(.vertical, buttonPadding)
+        }
+    }
+    
+    private var gifGridView: some View {
+        LazyVGrid(columns: gridItemLayout, spacing: gridSpacing) {
+            ForEach(giphyViewModel.giphyData, id: \.id) { item in
+                NavigationLink(destination: GifDetailView(giphy: item)) {
+                    gifItemView(for: item)
                 }
+            }
+        }
+    }
+    
+    private func gifItemView(for item: Datum) -> some View {
+        ZStack {
+            ProgressView()
+            AnimatedImage(url: URL(string: item.images.original.url))
+        }
+        .frame(width: gridItemWidth, height: gifItemHeight, alignment: .center)
+        .background(gifItemBackgroundColor)
+        .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+        .aspectRatio(contentMode: .fill)
+        .onAppear {
+            if item.id == giphyViewModel.giphyData.last?.id {
+                giphyViewModel.loadMoreContent()
+            }
+        }
+    }
+    
+    private var gridItemWidth: CGFloat {
+        (UIScreen.main.bounds.width / 2) - (gridSpacing * 2)
     }
 }
 
-
-#Preview {
-    ContentView()
+// Preview
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
 }
