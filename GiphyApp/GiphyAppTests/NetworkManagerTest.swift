@@ -36,6 +36,7 @@ final class NetworkManagerTest: XCTestCase {
                 XCTAssertNotNil(response, "Response should not be nil")
             })
             .store(in: &cancellables)
+        
     }
     
     func testBadApi() {

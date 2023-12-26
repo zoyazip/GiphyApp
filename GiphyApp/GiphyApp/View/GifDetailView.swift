@@ -45,6 +45,7 @@ struct GifDetailView: View {
             .overlay(copiedPopup, alignment: .center)
     }
     
+    // Displaying image
     private var gifImageView: some View {
         AnimatedImage(url: URL(string: giphy?.images.original.url ?? ""))
             .resizable()
@@ -53,6 +54,7 @@ struct GifDetailView: View {
             .clipped()
     }
     
+    // Displaying other gif details
     private var detailsView: some View {
         VStack(alignment: .leading, spacing: 10) {
             detailRow(title: "Id:", value: giphy?.id ?? "Unknown ID")

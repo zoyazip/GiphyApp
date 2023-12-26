@@ -14,6 +14,9 @@ protocol GiphyViewModelType {
     func fetchDataByTrending(isLoadMore: Bool)
     var giphyData: [Datum] { get set }
     var networkError: NetworkError? { get set }
+    var configuration: Configuration { get }
+    var canellables: Set<AnyCancellable> { get set }
+    var searchSubject: PassthroughSubject<String, Never> { get }
 }
 
 public class GiphyViewModel: ObservableObject {
@@ -30,6 +33,7 @@ public class GiphyViewModel: ObservableObject {
     private var currentSearch: String?
     private let searchSubject = PassthroughSubject<String, Never>()
     
+    // Debounce for auto search
     init() {
         searchSubject
             .debounce(for: .seconds(1), scheduler: DispatchQueue.main)
@@ -40,6 +44,7 @@ public class GiphyViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
+    // Fetching data by user prompt
     func fetchDataByPrompt(search: String, isLoadMore: Bool = false) {
         
         if (!isLoadMore) {
@@ -73,6 +78,7 @@ public class GiphyViewModel: ObservableObject {
         offset += 11
     }
     
+    // Fetching data by trending endpoint. Used in first app launch
     func fetchDataByTrending(isLoadMore: Bool = false) {
         if (!isLoadMore) {
             cleanGiphy()
@@ -99,6 +105,7 @@ public class GiphyViewModel: ObservableObject {
         offset += 11
     }
     
+    // Main fetching func. Used to fetch data by given URL. Uses NetworkManager with generic fetch func
     private func fetchData(url: URL) {
         NetworkManager.fetchData(using: url)
             .sink(receiveCompletion: { [weak self] completion in
@@ -117,6 +124,7 @@ public class GiphyViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
+    // Fetching Trending prompts
     func fetchTrendingSearch() {
         let queryItems = [
             URLQueryItem(name: "api_key", value: Configuration.apiKey),
@@ -147,11 +155,13 @@ public class GiphyViewModel: ObservableObject {
         
     }
     
+    // Clean array with data. Is called when User makes new search
     public func cleanGiphy() -> Int {
         giphyData.removeAll()
         return giphyData.count
     }
     
+    // Loads more data based on context
     func loadMoreContent() {
         if let search = currentSearch {
             fetchDataByPrompt(search: search, isLoadMore: true)
@@ -160,6 +170,7 @@ public class GiphyViewModel: ObservableObject {
         }
     }
     
+    // Updates the search text and triggers a new search
     func updateSearchText(_ newText: String) {
         searchSubject.send(newText)
     }
