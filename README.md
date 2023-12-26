@@ -2,7 +2,7 @@
 Test task for ChiliLabs
 
 ## Screenshots:
-
+<img src="https://github.com/zoyazip/GiphyApp/assets/67118409/0351ffc1-259c-45ad-93b9-bcf633dd4e77" width="300"/>
 ![Simulator Screenshot - iPhone 15 Pro - 2023-12-27 at 00 35 11](https://github.com/zoyazip/GiphyApp/assets/67118409/0351ffc1-259c-45ad-93b9-bcf633dd4e77)
 ### Main screen
 
