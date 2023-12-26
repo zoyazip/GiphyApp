@@ -9,15 +9,15 @@ import Foundation
 import Combine
 
 
-protocol NetworkManagerProtocol {
-    static func fetchData<T: Codable>(using apiUrl: String) -> AnyPublisher<T, NetworkError>
+protocol NetworkManagerType {
+    static func fetchData<T: Codable>(using apiUrl: URL?) -> AnyPublisher<T, NetworkError>
 }
 
-class NetworkManager: NetworkManagerProtocol {
+class NetworkManager: NetworkManagerType {
     
-    static func fetchData<T: Codable>(using apiUrl: String) -> AnyPublisher<T, NetworkError> {
+    static func fetchData<T: Codable>(using apiUrl: URL?) -> AnyPublisher<T, NetworkError> {
         
-        guard let url = URL(string: apiUrl) else {
+        guard let url = apiUrl else {
             return Fail(error: NetworkError.InvalidURL).eraseToAnyPublisher()
         }
         

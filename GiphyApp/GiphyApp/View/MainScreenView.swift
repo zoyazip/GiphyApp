@@ -9,6 +9,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 
 struct ContentView: View {
+    
     @ObservedObject private var giphyViewModel = GiphyViewModel()
     @State private var searchText = ""
     @State private var searchIsActive = false
@@ -23,37 +24,37 @@ struct ContentView: View {
             ScrollView {
                 LazyVGrid(columns: adaptiveColumn, spacing: 16) {
                     ForEach(giphyViewModel.giphyData, id: \.id) { item in
-                        NavigationLink(destination: GifDetailView(
-                            title: item.title, author: item.username,
-                            width: item.images.original.width,
-                            height: item.images.original.height,
-                            date: item.import_datetime,
-                            url: item.images.original.url,
-                            originalUrl: item.url)) {
+                        NavigationLink(destination: GifDetailView(giphy: item)) {
                             ZStack {
                                 ProgressView()
                                 AnimatedImage(url: URL(string: item.images.original.url))
-                            }.frame(width: width, height: 200, alignment: .center)
-                                .background(Color(hex: "#E3E8E6"))
-                                .clipShape(RoundedRectangle(cornerRadius: 16))
-                                .aspectRatio(contentMode: .fill)
+                            }
+                            .frame(width: width, height: 200, alignment: .center)
+                            .background(Color(hex: "#E3E8E6"))
+                            .clipShape(RoundedRectangle(cornerRadius: 16))
+                            .aspectRatio(contentMode: .fill)
+                            .onAppear {
+                                if item.id == giphyViewModel.giphyData.last?.id {
+                                    giphyViewModel.loadMoreContent()
+                                }
+                            }
                         }
                     }
                 }
             }
             .padding()
             .navigationTitle("Gifs")
-        }.searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search Gif")
-            .onSubmit(of: .search) {
-                print(searchText)
-            }
-            .onAppear {
-                giphyViewModel.fetchData()
-            }
-            .onChange(of: searchText) { newValue in
-                
-            }
-        
+        }
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search Gif")
+                .onSubmit(of: .search) {
+                    giphyViewModel.fetchDataByPrompt(search: searchText, isLoadMore: false)
+                }
+                .onAppear {
+                    giphyViewModel.fetchDataByTrending(isLoadMore: false)
+                }
+                .onChange(of: searchText) { newValue in
+                    giphyViewModel.updateSearchText(newValue)
+                }
     }
 }
 

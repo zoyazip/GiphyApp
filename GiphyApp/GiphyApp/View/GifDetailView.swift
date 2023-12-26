@@ -10,21 +10,14 @@ import SDWebImageSwiftUI
 import UIKit
 
 struct GifDetailView: View {
-    var title: String?
-    var author: String?
-    var width: String?
-    var height: String?
     
-    var date: String?
-    var url: String?
-    
-    var originalUrl: String?
+    var giphy: Datum?
     
     private let deviceWidth = UIScreen.main.bounds.width
     var body: some View {
         ScrollView {
             VStack {
-                AnimatedImage(url: URL(string: url ?? ""))
+                AnimatedImage(url: URL(string: (giphy?.images.original.url)!))
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: deviceWidth, height: 400, alignment: .center)
@@ -32,11 +25,20 @@ struct GifDetailView: View {
                 
                 VStack {
                     HStack(alignment: .top) {
+                        Text("Id:")
+                            .bold()
+                            .font(.system(size: 20))
+                        Spacer()
+                        Text(giphy?.id ?? "Unknown Date")
+                            .font(.system(size: 20))
+                            .multilineTextAlignment(.trailing)
+                    }.padding(.bottom)
+                    HStack(alignment: .top) {
                         Text("Title:")
                             .bold()
                             .font(.system(size: 20))
                         Spacer()
-                        Text(title ?? "Unknown Title")
+                        Text(giphy?.title ?? "Unknown Title")
                             .font(.system(size: 20))
                             .multilineTextAlignment(.trailing)
                     }.padding(.bottom)
@@ -45,7 +47,7 @@ struct GifDetailView: View {
                             .bold()
                             .font(.system(size: 20))
                         Spacer()
-                        Text(author ?? "Unknown Author")
+                        Text(giphy?.username ?? "Unknown Author")
                             .font(.system(size: 20))
                             .multilineTextAlignment(.trailing)
                     }.padding(.bottom)
@@ -54,7 +56,7 @@ struct GifDetailView: View {
                             .bold()
                             .font(.system(size: 20))
                         Spacer()
-                        Text(width ?? "Unknown Dimensions")
+                        Text("\(giphy?.images.original.width ?? "Unknown")x\(giphy?.images.original.height ?? "Unknown")")
                             .font(.system(size: 20))
                             .multilineTextAlignment(.trailing)
                     }.padding(.bottom)
@@ -63,7 +65,7 @@ struct GifDetailView: View {
                             .bold()
                             .font(.system(size: 20))
                         Spacer()
-                        Text(date ?? "Unknown Date")
+                        Text(giphy?.import_datetime ?? "Unknown Date")
                             .font(.system(size: 20))
                             .multilineTextAlignment(.trailing)
                     }.padding(.bottom)
@@ -85,7 +87,7 @@ struct GifDetailView: View {
         }
         Button("See Original") {
             print("Clicked See orginal Button")
-            if let url = URL(string: originalUrl!) {
+            if let urlString = giphy?.url, let url = URL(string: urlString) {
                 UIApplication.shared.open(url)
             }
         }
