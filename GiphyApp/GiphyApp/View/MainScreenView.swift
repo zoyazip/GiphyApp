@@ -19,7 +19,7 @@ struct ContentView: View {
     private let gridSpacing: CGFloat = 16
     private let horizontalScrollSpacing: CGFloat = 10
     private let buttonPadding: CGFloat = 10
-    private let cornerRadius: CGFloat = 32
+    private let cornerRadius: CGFloat = 16
     private let gifItemHeight: CGFloat = 200
     private let gifItemBackgroundColor = Color(hex: "#E3E8E6")
     
@@ -66,6 +66,7 @@ struct ContentView: View {
         }
     }
     
+    // Displaying trending requests as a LazyHGrid
     private var trendingSearchView: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyHGrid(rows: [GridItem(.flexible())], spacing: horizontalScrollSpacing) {
@@ -86,6 +87,7 @@ struct ContentView: View {
         }
     }
     
+    // Displaying Fetched gifs
     private var gifGridView: some View {
         LazyVGrid(columns: gridItemLayout, spacing: gridSpacing) {
             ForEach(giphyViewModel.giphyData, id: \.id) { item in
@@ -96,6 +98,7 @@ struct ContentView: View {
         }
     }
     
+    // Representation of Grid Gif item
     private func gifItemView(for item: Datum) -> some View {
         ZStack {
             ProgressView()
@@ -111,7 +114,7 @@ struct ContentView: View {
             }
         }
     }
-    
+    // Getting dynamicaly grid item width
     private var gridItemWidth: CGFloat {
         (UIScreen.main.bounds.width / 2) - (gridSpacing * 2)
     }
