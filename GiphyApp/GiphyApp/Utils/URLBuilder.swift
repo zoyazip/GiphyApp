@@ -8,28 +8,13 @@
 import Foundation
 
 class URLBuilder {
-    private var components: URLComponents
-    
-    init?(baseUrl: String) {
-        guard let components = URLComponents(string: baseUrl) else { return nil };
-        self.components = components
-    }
-    
-    func set(path: String) -> URLBuilder {
+    static func buildURL(scheme: String, host: String, path: String, urlQuery: [URLQueryItem]) -> URL? {
+        var components = URLComponents()
+        components.scheme = scheme
+        components.host = host
         components.path = path
-        return self
-    }
-    
-    func addQueryItem(name: String, value: String?) -> URLBuilder {
-        var queryItems = components.queryItems ?? []
-        let queryItem = URLQueryItem(name: name, value: value)
-        queryItems.append(queryItem)
-        components.queryItems = queryItems
+        components.queryItems = urlQuery.isEmpty ? nil : urlQuery
         
-        return self
-    }
-    
-    func build() -> URL? {
         return components.url
     }
 }
