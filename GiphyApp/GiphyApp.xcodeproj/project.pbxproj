@@ -24,6 +24,9 @@
 		F3C4FDD82B37689900D1FA4E /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FDD72B37689900D1FA4E /* Configuration.swift */; };
 		F3C4FDE72B38640000D1FA4E /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = F3C4FDE62B38640000D1FA4E /* SDWebImageSwiftUI */; };
 		F3C4FDEC2B3B151D00D1FA4E /* SearchTrending.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FDEB2B3B151D00D1FA4E /* SearchTrending.swift */; };
+		F3C4FDF02B3B74D700D1FA4E /* DataCleaningTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FDEF2B3B74D700D1FA4E /* DataCleaningTest.swift */; };
+		F3C4FDF22B3B78D000D1FA4E /* NetworkManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FDF12B3B78D000D1FA4E /* NetworkManagerTest.swift */; };
+		F3C4FDF42B3B811400D1FA4E /* URLBuilderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FDF32B3B811400D1FA4E /* URLBuilderTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +66,9 @@
 		F3C4FDD52B3766B200D1FA4E /* GiphyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiphyViewModel.swift; sourceTree = "<group>"; };
 		F3C4FDD72B37689900D1FA4E /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		F3C4FDEB2B3B151D00D1FA4E /* SearchTrending.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTrending.swift; sourceTree = "<group>"; };
+		F3C4FDEF2B3B74D700D1FA4E /* DataCleaningTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCleaningTest.swift; sourceTree = "<group>"; };
+		F3C4FDF12B3B78D000D1FA4E /* NetworkManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerTest.swift; sourceTree = "<group>"; };
+		F3C4FDF32B3B811400D1FA4E /* URLBuilderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLBuilderTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +145,9 @@
 			isa = PBXGroup;
 			children = (
 				F3C4FDA52B370E7700D1FA4E /* GiphyAppTests.swift */,
+				F3C4FDEF2B3B74D700D1FA4E /* DataCleaningTest.swift */,
+				F3C4FDF12B3B78D000D1FA4E /* NetworkManagerTest.swift */,
+				F3C4FDF32B3B811400D1FA4E /* URLBuilderTest.swift */,
 			);
 			path = GiphyAppTests;
 			sourceTree = "<group>";
@@ -358,6 +367,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3C4FDF22B3B78D000D1FA4E /* NetworkManagerTest.swift in Sources */,
+				F3C4FDF42B3B811400D1FA4E /* URLBuilderTest.swift in Sources */,
+				F3C4FDF02B3B74D700D1FA4E /* DataCleaningTest.swift in Sources */,
 				F3C4FDA62B370E7700D1FA4E /* GiphyAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

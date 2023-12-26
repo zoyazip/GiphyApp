@@ -16,7 +16,7 @@ protocol GiphyViewModelType {
     var networkError: NetworkError? { get set }
 }
 
-class GiphyViewModel: ObservableObject {
+public class GiphyViewModel: ObservableObject {
     
     @Published var networkError: NetworkError?
     @Published var giphyData: [Datum] = []
@@ -147,8 +147,9 @@ class GiphyViewModel: ObservableObject {
         
     }
     
-    private func cleanGiphy() {
+    public func cleanGiphy() -> Int {
         giphyData.removeAll()
+        return giphyData.count
     }
     
     func loadMoreContent() {
